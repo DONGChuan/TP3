@@ -117,7 +117,22 @@ int taille_chaine(const t_chaine * ptr_chaine)
 int chaines_semblables(const t_chaine * ptr_chaine1,
 					   const t_chaine * ptr_chaine2)
 {
+	int i;
 
+	if(taille_chaine(ptr_chaine1) == taille_chaine(ptr_chaine2))
+	{
+		for(i = 0; i < taille_chaine(ptr_chaine1) ; i++)
+		{
+			if(ptr_chaine1->caracteres[i] != ptr_chaine2->caracteres[i])
+			{
+				return 0;
+			}
+		}
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 
