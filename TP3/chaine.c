@@ -67,14 +67,15 @@ int ajouter_caractere(t_chaine * ptr_chaine, unsigned char ajout)
 */
 unsigned char consulter_caractere(const t_chaine * ptr_chaine, int indice)
 {
-	assert(indice >= 0 || indice < TAILLE_MAXIMALE_CHAINE);
+	assert(indice >= 0);
+	assert(indice < TAILLE_MAXIMALE_CHAINE);
 
 	unsigned char ptr_caractere_lu;
 	ptr_caractere_lu = ptr_chaine->caracteres[indice];
 
 	return ptr_caractere_lu;
 }
-
+//asaaaa
 
 /*
 	TAILLE_CHAINE
@@ -116,6 +117,7 @@ int taille_chaine(const t_chaine * ptr_chaine)
 int chaines_semblables(const t_chaine * ptr_chaine1,
 					   const t_chaine * ptr_chaine2)
 {
+
 }
 
 
