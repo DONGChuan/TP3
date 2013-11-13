@@ -5,14 +5,8 @@
 
 	Cette fonction initialise la liste recue. Au depart, la liste est vide.
 
-	A NOTER : Une liste ne devrait jamais etre initialisee plus d'une fois.
-
 	PARAMETRE :
 		- ptr_liste : L'adresse de la liste a initialiser (t_liste_chainee *).
-
-	EXEMPLE D'APPEL :
-		t_liste_chainee un_liste;
-		initialiser_liste(&une_liste);
 
 	RETOUR : Aucun.
 */
@@ -33,14 +27,6 @@ void initialiser_liste(t_liste_chainee * ptr_liste)
 					  (const t_liste_chainee *).
 
 	RETOUR : Le nombre de chaines dans la liste.
-
-	EXEMPLE D'APPEL :
-		t_liste_chainee une_liste;
-		initialiser_liste(&une_liste);
-		printf("%li\n", taille_liste(&une_liste));
-
-	ATTENTION : On suppose que la fonction INITIALISER_LISTE a ete
-				appelee une fois sur ptr_liste.
 */
 long int taille_liste(const t_liste_chainee * ptr_liste)
 {
@@ -77,7 +63,11 @@ long int taille_liste(const t_liste_chainee * ptr_liste)
 */
 int ajouter_debut_liste(t_liste_chainee * ptr_liste,
 						const t_chaine * ptr_chaine,
-						unsigned int code);
+						unsigned int code)
+{
+
+	ptr_liste -> tete = ptr_chaine;
+}
 
 
 

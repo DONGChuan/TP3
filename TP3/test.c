@@ -63,5 +63,5 @@ int longueur_liste(const ptr_liste ptr)
 		tmp= tmp -> suivant;
 	}
 
-	return longueur;
+	return long
 }

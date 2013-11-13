@@ -27,6 +27,9 @@
     <ClCompile Include="tp3.c">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="test.c">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chaine.h">
