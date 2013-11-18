@@ -39,24 +39,10 @@ void vider_chaine(t_chaine * ptr_chaine)
 */
 int ajouter_caractere(t_chaine * ptr_chaine, unsigned char ajout)
 {
-
-	//if(ptr_chaine->nb_caracteres != 0)
-	//	return 0;
-	//else
-	//{
-	//	ptr_chaine -> caracteres[0] = ajout;
-	//	ptr_chaine -> caracteres[1] = '/0';
-
-	//	ptr_chaine->nb_caracteres ++;
-
-	//	return 1;
-	//}
-
-	if(taille_chaine(ptr_chaine) + 1 < TAILLE_MAXIMALE_CHAINE)
+	if(taille_chaine(ptr_chaine) < TAILLE_MAXIMALE_CHAINE)
 	{
 		ptr_chaine -> caracteres[taille_chaine(ptr_chaine)] = ajout;
 		ptr_chaine->nb_caracteres++;
-		ptr_chaine -> caracteres[taille_chaine(ptr_chaine)] = '/0';
 
 		return 1;
 	}
