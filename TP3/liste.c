@@ -4,11 +4,6 @@
 	INITIALISER_LISTE
 
 	Cette fonction initialise la liste recue. Au depart, la liste est vide.
-
-	PARAMETRE :
-		- ptr_liste : L'adresse de la liste a initialiser (t_liste_chainee *).
-
-	RETOUR : Aucun.
 */
 void initialiser_liste(t_liste_chainee * ptr_liste)
 {
@@ -21,18 +16,11 @@ void initialiser_liste(t_liste_chainee * ptr_liste)
 	TAILLE_LISTE
 
 	Cette fonction retourne le nombre de maillons dans la liste.
-
-	PARAMETRE :
-		- ptr_liste : L'adresse de la liste a consulter
-					  (const t_liste_chainee *).
-
-	RETOUR : Le nombre de chaines dans la liste.
 */
 long int taille_liste(const t_liste_chainee * ptr_liste)
 {
 	return ptr_liste->nb_maillons;
 }
-
 
 /*
 	AJOUTER_DEBUT_LISTE
