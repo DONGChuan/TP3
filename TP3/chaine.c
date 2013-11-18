@@ -55,38 +55,16 @@ unsigned char consulter_caractere(const t_chaine * ptr_chaine, int indice)
 	TAILLE_CHAINE
 
 	Cette fonction retourne le nombre de caracteres dans une chaine.
-
-	PARAMETRE :
-		- ptr_chaine : L'adresse de la chaine a consulter (const t_chaine *).
-
-	RETOUR : Le nombre de caracteres de la chaine. Cette valeur est toujours
-			 dans l'intervalle [0, TAILLE_MAXIMALE_CHAINE].
 */
 int taille_chaine(const t_chaine * ptr_chaine)
 {
 	return ptr_chaine -> nb_caracteres;
 }
 
-
 /*
 	CHAINES_SEMBLABLES
 
 	Cette fonction verifie si deux chaines sont identiques.
-
-	PARAMETRES :
-		- ptr_chaine1 : L'adresse d'une des deux chaines a comparer
-						(const t_chaine *).
-		- ptr_chaine2 : L'adresse de l'autre chaine a comparer
-						(const t_chaine *).
-
-	RETOUR : 1 si les chaines sont identiques et 0 dans le cas contraire.
-
-	EXEMPLE D'APPEL :
-		t_chaine chaine1, chaine2;
-		vider_chaine(&chaine1);
-		vider_chaine(&chaine2);
-		printf("%i\n", chaines_semblables(&chaine1, &chaine2));
-
 */
 int chaines_semblables(const t_chaine * ptr_chaine1,
 					   const t_chaine * ptr_chaine2)
@@ -108,8 +86,6 @@ int chaines_semblables(const t_chaine * ptr_chaine1,
 		return 0;
 	}
 }
-
-
 
 /*
 	ECRIRE_CHAINE_FICHIER
