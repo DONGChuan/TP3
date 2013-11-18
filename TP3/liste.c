@@ -53,8 +53,14 @@ int ajouter_debut_liste(t_liste_chainee * ptr_liste,
 						const t_chaine * ptr_chaine,
 						unsigned int code)
 {
-
-	ptr_liste -> tete = ptr_chaine;
+	if(!chercher_chaine_dans_liste(ptr_liste, ptr_chaine, code))
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 
