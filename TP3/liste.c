@@ -1,4 +1,5 @@
 #include "liste.h"
+#include <stdlib.h>
 
 /*
 	INITIALISER_LISTE
@@ -7,9 +8,9 @@
 */
 void initialiser_liste(t_liste_chainee * ptr_liste)
 {
-	ptr_liste->tete = NULL;			
-	ptr_liste->queue = NULL;				
-	ptr_liste->nb_maillons = 0;	
+	ptr_liste -> tete = NULL;			
+	ptr_liste -> queue = NULL;				
+	ptr_liste -> nb_maillons = 0;	
 }
 
 /*
@@ -19,7 +20,7 @@ void initialiser_liste(t_liste_chainee * ptr_liste)
 */
 long int taille_liste(const t_liste_chainee * ptr_liste)
 {
-	return ptr_liste->nb_maillons;
+	return ptr_liste -> nb_maillons;
 }
 
 /*
@@ -111,8 +112,6 @@ int chercher_chaine_dans_liste(const t_liste_chainee * ptr_liste,
 	return 0;
 }
 
-
-
 /*
 	CHERCHER_CODE_DANS_LISTE
 
@@ -142,8 +141,6 @@ int chercher_code_dans_liste(const t_liste_chainee * ptr_liste,
 	return 0;
 }
 
-
-
 /*
 	VIDER_LISTE
 
@@ -151,5 +148,9 @@ int chercher_code_dans_liste(const t_liste_chainee * ptr_liste,
 */
 void vider_liste(t_liste_chainee * ptr_liste)
 {
-	initialiser_liste(ptr_liste);
+	free(ptr_liste); // Le prof a dit ca mais je suis pas sure .!!!!!!!!!!!!!!!!!!!!!
+	// Le prof a dit ca mais je suis pas sure .!!!!!!!!!!!!!!!!!!!!!
+	// Le prof a dit ca mais je suis pas sure .!!!!!!!!!!!!!!!!!!!!!
+	// Le prof a dit ca mais je suis pas sure .!!!!!!!!!!!!!!!!!!!!!
+	// Le prof a dit ca mais je suis pas sure .!!!!!!!!!!!!!!!!!!!!!
 }
