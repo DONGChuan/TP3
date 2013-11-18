@@ -14,7 +14,13 @@
 */
 void vider_chaine(t_chaine * ptr_chaine)
 {
-	ptr_chaine -> caracteres[0] = '/0';
+	int i;
+
+	for(i = 0; i<taille_chaine(ptr_chaine); i++)
+	{
+		ptr_chaine -> caracteres[i] = NULL;
+	}
+	
 	ptr_chaine->nb_caracteres = 0;
 }
 
