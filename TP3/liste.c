@@ -113,7 +113,7 @@ int ajouter_fin_liste(t_liste_chainee * ptr_liste,
 					   a la chaine recue (unsigned int *).
 
 	RETOUR : 1 si le code est present et 0 dans le cas contraire. Si le
-			 code est present, *ptr_chaine est modifie.
+			 code est present, *ptr_code est modifie.
 
 	EXEMPLE D'APPEL :
 		t_liste_chainee une_liste;
