@@ -153,6 +153,7 @@ void vider_liste(t_liste_chainee * ptr_liste)
 	t_maillon * tmp;
 
 	while(ptr_liste->tete != NULL)
+	{
 		tmp = ptr_liste -> tete;
 		free(ptr_liste -> tete);
 		ptr_liste->tete = tmp -> suivant;

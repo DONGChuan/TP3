@@ -122,5 +122,5 @@ void vider_dictionnaire(t_dictionnaire * ptr_dictionnaire)
 	vider_liste(ptr_dictionnaire->groupe_par_caractere);
 	vider_liste(ptr_dictionnaire->groupe_par_code);
 	
-	free(ptr_dictionnaire);
+	ptr_dictionnaire->nb_chaines = 0;
 }
