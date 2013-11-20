@@ -148,9 +148,13 @@ int chercher_code_dans_liste(const t_liste_chainee * ptr_liste,
 */
 void vider_liste(t_liste_chainee * ptr_liste)
 {
-	free(ptr_liste); // Le prof a dit ca mais je suis pas sure .!!!!!!!!!!!!!!!!!!!!!
-	// Le prof a dit ca mais je suis pas sure .!!!!!!!!!!!!!!!!!!!!!
-	// Le prof a dit ca mais je suis pas sure .!!!!!!!!!!!!!!!!!!!!!
-	// Le prof a dit ca mais je suis pas sure .!!!!!!!!!!!!!!!!!!!!!
-	// Le prof a dit ca mais je suis pas sure .!!!!!!!!!!!!!!!!!!!!!
+	ptr_liste->nb_maillons = 0;
+
+	t_maillon * tmp;
+
+	while(ptr_liste->tete != NULL)
+		tmp = ptr_liste -> tete;
+		free(ptr_liste -> tete);
+		ptr_liste->tete = tmp -> suivant;
+	}
 }

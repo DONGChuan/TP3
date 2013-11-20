@@ -1,4 +1,5 @@
 #include "dictionnaire.h"
+#include <stdlib.h>
 
 /*
 	INITIALISER_DICTIONNAIRE
@@ -17,25 +18,11 @@ void initialiser_dictionnaire(t_dictionnaire * ptr_dictionnaire)
 
 	Cette fonction retourne le nombre de chaines presentes dans le
 	dictionnaire.
-
-	PARAMETRE :
-		- ptr_dictionnaire : L'adresse du dictionnaire a consulter
-							 (const t_dictionnaire *).
-
-	RETOUR : Le nombre de chaines dans le dictionnaire.
-			 Cette valeur sera toujours >= 0.
-
-	EXEMPLE D'APPEL :
-		t_dictionnaire un_dictionnaire;
-		initialiser_dictionnaire(&un_dictionnaire);
-		printf("%li\n", nb_chaines_dictionnaire(&un_dictionnaire));
-
-	ATTENTION : On suppose que la fonction INITIALISER_DICTIONNAIRE a ete
-				appelee une fois sur ptr_dictionnaire.
 */
-long int nb_chaines_dictionnaire(const t_dictionnaire * ptr_dictionnaire);
-
-
+long int nb_chaines_dictionnaire(const t_dictionnaire * ptr_dictionnaire)
+{
+	return ptr_dictionnaire->nb_chaines;
+}
 
 /*
 	AJOUTER_UNE_CHAINE
@@ -46,28 +33,13 @@ long int nb_chaines_dictionnaire(const t_dictionnaire * ptr_dictionnaire);
 
 	A NOTER : On suppose que la chaine n'est pas deja presente et qu'elle
 			  n'est pas vide. On ne verifie pas pour des raisons de vitesse.
-
-	PARAMETRES :
-		- ptr_dictionnaire  : L'adresse du dictionnaire ou l'on souhaite
-							  ajouter une chaine (t_dictionnaire *).
-	    - ptr_chaine : L'adresse de la chaine a ajouter (const t_chaine *).
-
-	RETOUR : 1 en cas de succes et 0 dans le cas contraire
-			 (s'il n'y a plus de memoire).
-
-	EXEMPLE D'APPEL :
-		t_dictionnaire un_dictionnaire;
-		t_chaine une_chaine;
-		initialiser_dictionnaire(&un_dictionnaire);
-		vider_chaine(&une_chaine);
-		ajouter_caractere(&une_chaine, 'A');
-		ajouter_une_chaine(&un_dictionnaire, &une_chaine);
-
-	ATTENTION : On suppose que la fonction INITIALISER_DICTIONNAIRE a ete
-				appelee une fois sur ptr_dictionnaire.
 */
 int ajouter_une_chaine(t_dictionnaire * ptr_dictionnaire,
-					   const t_chaine * ptr_chaine);
+					   const t_chaine * ptr_chaine)
+{
+	return 1;
+	return 0;
+}
 
 
 
@@ -144,19 +116,11 @@ int chaine_du_code(const t_dictionnaire * ptr_dictionnaire,
 	VIDER_DICTIONNAIRE
 
 	Cette fonction vide le dictionnaire recu.
-
-	PARAMETRE :
-		- ptr_dictionnaire : L'adresse du dictionnaire a vider
-							(t_dictionnaire *).
-
-	RETOUR : Aucun.
-
-	EXEMPLE D'APPEL :
-		t_dictionnaire un_dictionnaire;
-		initialiser_dictionnaire(&un_dictionnaire);
-		vider_dictionnaire(&un_dictionnaire);
-
-	ATTENTION : On suppose que la fonction INITIALISER_DICTIONNAIRE a ete
-				appelee une fois sur ptr_dictionnaire.
 */
-void vider_dictionnaire(t_dictionnaire * ptr_dictionnaire);
+void vider_dictionnaire(t_dictionnaire * ptr_dictionnaire)
+{
+	vider_liste(ptr_dictionnaire->groupe_par_caractere);
+	vider_liste(ptr_dictionnaire->groupe_par_code);
+	
+	free(ptr_dictionnaire);
+}
