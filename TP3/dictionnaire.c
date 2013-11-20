@@ -37,6 +37,30 @@ long int nb_chaines_dictionnaire(const t_dictionnaire * ptr_dictionnaire)
 int ajouter_une_chaine(t_dictionnaire * ptr_dictionnaire,
 					   const t_chaine * ptr_chaine)
 {
+	int i;
+
+	// groupe_par_caractere
+	for(i=0;i<NB_CODES_ASCII;i++)
+	{
+		if(ptr_chaine->caracteres[0] ==
+			ptr_dictionnaire->groupe_par_caractere[i].queue->chaine.caracteres[0])
+		{
+			unsigned int code; // code???? comment le faire
+
+			return ajouter_fin_liste(ptr_dictionnaire->groupe_par_caractere,
+							         ptr_chaine,
+					                 code);
+		}
+	}
+
+
+	//groupe_par_code
+    //ToDo
+	
+
+	/* Augmenter la taille */
+	ptr_dictionnaire->nb_chaines++;
+
 	return 1;
 	return 0;
 }
