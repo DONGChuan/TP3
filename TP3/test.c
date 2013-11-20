@@ -65,3 +65,27 @@ int longueur_liste(const ptr_liste ptr)
 
 	return long
 }
+
+int retirer_debut(ptr_liste liste)
+{
+	if(liste->tete != NULL)
+	{
+		if(liste->tete->suivant != NULL)
+		{
+			ptr_noeud tmp;
+			tmp = liste->tete->suivant;
+			free(liste->tete);
+			liste->tete = tmp;
+		}
+		else
+		{
+			liste->tete = NULL;
+		}
+
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}

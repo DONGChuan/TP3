@@ -4,23 +4,13 @@
 	INITIALISER_DICTIONNAIRE
 
 	Cette fonction initialise le dictionnaire. Au depart, celui-ci est vide.
-
-	PARAMETRE :
-		- ptr_dictionnaire : L'adresse du dictionnaire a initialiser
-							 (t_dictionnaire *).
-
-	RETOUR : Aucun.
-
-	EXEMPLE D'APPEL :
-		t_dictionnaire un_dictionnaire;
-		initialiser_dictionnaire(&un_dictionnaire);
-
-	ATTENTION : Cette fonction ne doit etre appelee qu'une seule fois sur
-				un meme dictionnaire.
 */
-void initialiser_dictionnaire(t_dictionnaire * ptr_dictionnaire);
-
-
+void initialiser_dictionnaire(t_dictionnaire * ptr_dictionnaire)
+{
+	initialiser_liste(ptr_dictionnaire->groupe_par_caractere);
+	initialiser_liste(ptr_dictionnaire->groupe_par_code);
+	ptr_dictionnaire->nb_chaines = 0;
+}
 
 /*
 	NB_CHAINES_DICTIONNAIRE
