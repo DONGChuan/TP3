@@ -38,6 +38,8 @@ int ajouter_une_chaine(t_dictionnaire * ptr_dictionnaire,
 					   const t_chaine * ptr_chaine)
 {
 	int i;
+	int flag_par_caractere = 0;
+	int flag_par_code = 0;
 
 	// groupe_par_caractere
 	for(i=0;i<NB_CODES_ASCII;i++)
@@ -45,11 +47,9 @@ int ajouter_une_chaine(t_dictionnaire * ptr_dictionnaire,
 		if(ptr_chaine->caracteres[0] ==
 			ptr_dictionnaire->groupe_par_caractere[i].queue->chaine.caracteres[0])
 		{
-			unsigned int code; // code???? comment le faire
-
-			return ajouter_fin_liste(ptr_dictionnaire->groupe_par_caractere,
-							         ptr_chaine,
-					                 code);
+			flag_par_caractere = ajouter_fin_liste(ptr_dictionnaire->groupe_par_caractere,
+												  ptr_chaine,
+												  nb_chaines_dictionnaire(ptr_dictionnaire));
 		}
 	}
 
