@@ -12,12 +12,12 @@ void initialiser_dictionnaire(t_dictionnaire * ptr_dictionnaire)
 
 	for(i=0;i<NB_CODES_ASCII;i++)
 	{
-		initialiser_liste(&(ptr_dictionnaire->groupe_par_caractere[NB_CODES_ASCII]));
+		initialiser_liste(&(ptr_dictionnaire->groupe_par_caractere[i]));
 	}
 
 	for(i=0;i<NB_GROUPE_CODE;i++)
 	{
-		initialiser_liste(&(ptr_dictionnaire->groupe_par_code[NB_GROUPE_CODE]));
+		initialiser_liste(&(ptr_dictionnaire->groupe_par_code[i]));
 	}
 
 	ptr_dictionnaire->nb_chaines = 0;
@@ -98,7 +98,7 @@ int code_de_la_chaine(const t_dictionnaire * ptr_dictionnaire,
 {
 	int code_ASCII = (int)(ptr_chaine->caracteres[0]);
 
-	return chercher_chaine_dans_liste(&(ptr_dictionnaire->groupe_par_code[code_ASCII]),
+	return chercher_chaine_dans_liste(&(ptr_dictionnaire->groupe_par_caractere[code_ASCII]),
 							          ptr_chaine,
 							          ptr_code)
 }
@@ -144,12 +144,12 @@ void vider_dictionnaire(t_dictionnaire * ptr_dictionnaire)
 
 	for(i=0;i<NB_CODES_ASCII;i++)
 	{
-		vider_liste(&(ptr_dictionnaire->groupe_par_caractere[NB_CODES_ASCII]));
+		vider_liste(&(ptr_dictionnaire->groupe_par_caractere[i]));
 	}
 
 	for(i=0;i<NB_GROUPE_CODE;i++)
 	{
-		vider_liste(&(ptr_dictionnaire->groupe_par_code[NB_GROUPE_CODE]));
+		vider_liste(&(ptr_dictionnaire->groupe_par_code[i]));
 	}
 	
 	ptr_dictionnaire->nb_chaines = 0;
