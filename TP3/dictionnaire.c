@@ -100,7 +100,7 @@ int code_de_la_chaine(const t_dictionnaire * ptr_dictionnaire,
 
 	return chercher_chaine_dans_liste(&(ptr_dictionnaire->groupe_par_caractere[code_ASCII]),
 							          ptr_chaine,
-							          ptr_code)
+							          ptr_code);
 }
 
 
@@ -128,7 +128,7 @@ int chaine_du_code(const t_dictionnaire * ptr_dictionnaire,
 
 	return chercher_code_dans_liste(&(ptr_dictionnaire->groupe_par_code[code_mudulo]),
 							        code,
-							        ptr_chaine)
+							        ptr_chaine);
 }
 
 
