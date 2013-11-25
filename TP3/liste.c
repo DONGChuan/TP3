@@ -187,10 +187,6 @@ void vider_liste(t_liste_chainee * ptr_liste)
 
 	while(ptr_liste->tete != NULL)
 	{
-		//ptr_maillon_a_detruire = ptr_liste -> tete;
-		//free(ptr_liste -> tete);
-		//ptr_liste->tete = ptr_maillon_a_detruire -> suivant;
-
 		ptr_maillon_a_detruire = ptr_liste->tete;
 		ptr_liste->tete = ptr_maillon_a_detruire->suivant;
 		free(ptr_maillon_a_detruire);
