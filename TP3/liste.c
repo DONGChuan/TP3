@@ -40,31 +40,24 @@ int ajouter_debut_liste(t_liste_chainee * ptr_liste,
 						const t_chaine * ptr_chaine,
 						unsigned int code)
 {
-	if(!chercher_chaine_dans_liste(ptr_liste, ptr_chaine, &code))
+	t_maillon * nouveau_maillon = (t_maillon *) malloc(sizeof(t_maillon));
+
+	if(nouveau_maillon!=NULL)
 	{
-		t_maillon * nouveau_maillon = (t_maillon *) malloc(sizeof(t_maillon));
+		nouveau_maillon -> chaine = *ptr_chaine;
+		nouveau_maillon -> code = code;
+		nouveau_maillon -> suivant = ptr_liste -> tete;
 
-		if(nouveau_maillon!=NULL)
+		ptr_liste -> tete = nouveau_maillon;
+
+		if(nouveau_maillon -> suivant == NULL)
 		{
-			nouveau_maillon -> chaine = *ptr_chaine;
-			nouveau_maillon -> code = code;
-			nouveau_maillon -> suivant = ptr_liste -> tete;
-
-			ptr_liste -> tete = nouveau_maillon;
-
-			if(nouveau_maillon -> suivant == NULL)
-			{
-				ptr_liste->queue = nouveau_maillon;
-			}
-
-			ptr_liste -> nb_maillons++;
-
-			return 1;
+			ptr_liste->queue = nouveau_maillon;
 		}
-		else
-		{
-			return 0;
-		}
+
+		ptr_liste -> nb_maillons++;
+
+		return 1;
 	}
 	else
 	{
@@ -82,33 +75,26 @@ int ajouter_fin_liste(t_liste_chainee * ptr_liste,
 					  const t_chaine * ptr_chaine,
 					  unsigned int code)
 {
-	if(!chercher_chaine_dans_liste(ptr_liste, ptr_chaine, &code))
+	/* On tente de créer un nouveau maillon. */
+	t_maillon * nouveau_maillon = (t_maillon *) malloc(sizeof(t_maillon));
+
+	if (nouveau_maillon != NULL) 
 	{
-		/* On tente de créer un nouveau maillon. */
-		t_maillon * nouveau_maillon = (t_maillon *) malloc(sizeof(t_maillon));
+		nouveau_maillon -> chaine = *ptr_chaine;
+		nouveau_maillon -> code = code;
+		nouveau_maillon -> suivant = NULL;
 
-		if (nouveau_maillon != NULL) 
+		ptr_liste -> queue -> suivant = nouveau_maillon;
+		ptr_liste -> queue = nouveau_maillon;
+
+		if(ptr_liste->nb_maillons == 0)
 		{
-			nouveau_maillon -> chaine = *ptr_chaine;
-			nouveau_maillon -> code = code;
-			nouveau_maillon -> suivant = NULL;
-
-			ptr_liste -> queue -> suivant = nouveau_maillon;
-			ptr_liste -> queue = nouveau_maillon;
-
-			if(ptr_liste->nb_maillons == 0)
-			{
-				ptr_liste->tete = nouveau_maillon;
-			}
-
-			ptr_liste->nb_maillons++;
-
-			return 1;
+			ptr_liste->tete = nouveau_maillon;
 		}
-		else
-		{
-			return 0;
-		}
+
+		ptr_liste->nb_maillons++;
+
+		return 1;
 	}
 	else
 	{
