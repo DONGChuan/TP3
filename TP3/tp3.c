@@ -349,18 +349,19 @@ int effectuer_decompression(FILE * fichier_source, FILE * fichier_destination)
 		chaîne : t_chaîne // Une chaîne pouvant contenir '\0'.
 		caractère : t_caractère // Un caractère non signé.
 		dictionnaire : t_dictionnaire // Un dictionnaire de chaînes.
+		
 		ajouter tous les codes ASCII au dictionnaire
 		tant que (on peut lire un caractère dans le fichier source)
-		caractère  lire_un_caractère(fichier_source)
-		si (dictionnaire contient la chaîne chaîne+caractère) alors
-		chaîne  chaîne+caractère // On concatène les deux.
-		sinon
-		si (le dictionnaire contient moins de 212 chaînes) alors
-		ajouter chaîne+caractère dans le dictionnaire
-		fin si
-		écrire le code de chaîne dans le fichier destination
-		chaîne  caractere;
-		fin si
+			caractère  lire_un_caractère(fichier_source)
+			si (dictionnaire contient la chaîne chaîne+caractère) alors
+				chaîne  chaîne+caractère // On concatène les deux.
+			sinon
+				si (le dictionnaire contient moins de 212 chaînes) alors
+					ajouter chaîne+caractère dans le dictionnaire
+				fin si
+				écrire le code de chaîne dans le fichier destination
+				chaîne  caractere;
+			fin si
 		fin tant que
 		écrire le code de chaîne dans le fichier destination
 	*/
