@@ -8,8 +8,18 @@
 */
 void initialiser_dictionnaire(t_dictionnaire * ptr_dictionnaire)
 {
-	initialiser_liste(ptr_dictionnaire->groupe_par_caractere);
-	initialiser_liste(ptr_dictionnaire->groupe_par_code);
+	int i;
+
+	for(i=0;i<NB_CODES_ASCII;i++)
+	{
+		initialiser_liste(&(ptr_dictionnaire->groupe_par_caractere[NB_CODES_ASCII]));
+	}
+
+	for(i=0;i<NB_GROUPE_CODE;i++)
+	{
+		initialiser_liste(&(ptr_dictionnaire->groupe_par_code[NB_GROUPE_CODE]));
+	}
+
 	ptr_dictionnaire->nb_chaines = 0;
 }
 
@@ -130,8 +140,17 @@ int chaine_du_code(const t_dictionnaire * ptr_dictionnaire,
 */
 void vider_dictionnaire(t_dictionnaire * ptr_dictionnaire)
 {
-	vider_liste(ptr_dictionnaire->groupe_par_caractere);
-	vider_liste(ptr_dictionnaire->groupe_par_code);
+	int i;
+
+	for(i=0;i<NB_CODES_ASCII;i++)
+	{
+		vider_liste(&(ptr_dictionnaire->groupe_par_caractere[NB_CODES_ASCII]));
+	}
+
+	for(i=0;i<NB_GROUPE_CODE;i++)
+	{
+		vider_liste(&(ptr_dictionnaire->groupe_par_code[NB_GROUPE_CODE]));
+	}
 	
 	ptr_dictionnaire->nb_chaines = 0;
 }
