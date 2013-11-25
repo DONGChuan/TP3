@@ -8,8 +8,11 @@
 */
 void initialiser_liste(t_liste_chainee * ptr_liste)
 {
+	/* On fait pointer la tête et la queue vers NULL */
 	ptr_liste -> tete = NULL;			
-	ptr_liste -> queue = NULL;				
+	ptr_liste -> queue = NULL;	
+
+	/* On initialise le nombre de maillons à 0 */
 	ptr_liste -> nb_maillons = 0;	
 }
 
@@ -20,6 +23,10 @@ void initialiser_liste(t_liste_chainee * ptr_liste)
 */
 long int taille_liste(const t_liste_chainee * ptr_liste)
 {
+	/* 
+		La taille de la liste est un champ du struct de la liste. 
+		Il suffit de retourner le champ "nb_maillons" de la liste. 
+	*/
 	return ptr_liste -> nb_maillons;
 }
 
@@ -35,17 +42,29 @@ int ajouter_debut_liste(t_liste_chainee * ptr_liste,
 {
 	if(!chercher_chaine_dans_liste(ptr_liste, ptr_chaine, &code))
 	{
-		t_maillon * maillon_ajoute;
-		maillon_ajoute -> chaine = *ptr_chaine;
-		maillon_ajoute -> code = code;
-		maillon_ajoute -> suivant = NULL;
+		t_maillon * nouveau_maillon = (t_maillon *) malloc(sizeof(t_maillon));
 
-		maillon_ajoute -> suivant = ptr_liste -> tete;
-		ptr_liste -> tete = maillon_ajoute;
+		if(nouveau_maillon!=NULL)
+		{
+			nouveau_maillon -> chaine = *ptr_chaine;
+			nouveau_maillon -> code = code;
+			nouveau_maillon -> suivant = ptr_liste -> tete;
 
-		ptr_liste -> nb_maillons++;
+			ptr_liste -> tete = nouveau_maillon;
 
-		return 1;
+			if(nouveau_maillon -> suivant == NULL)
+			{
+				ptr_liste->queue = nouveau_maillon;
+			}
+
+			ptr_liste -> nb_maillons++;
+
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 	else
 	{
@@ -65,17 +84,31 @@ int ajouter_fin_liste(t_liste_chainee * ptr_liste,
 {
 	if(!chercher_chaine_dans_liste(ptr_liste, ptr_chaine, &code))
 	{
-		t_maillon * maillon_ajoute;
-		maillon_ajoute -> chaine = *ptr_chaine;
-		maillon_ajoute -> code = code;
-		maillon_ajoute -> suivant = NULL;
+		/* On tente de créer un nouveau maillon. */
+		t_maillon * nouveau_maillon = (t_maillon *) malloc(sizeof(t_maillon));
 
-		ptr_liste -> queue -> suivant = maillon_ajoute;
-		ptr_liste -> queue = maillon_ajoute;
+		if (nouveau_maillon != NULL) 
+		{
+			nouveau_maillon -> chaine = *ptr_chaine;
+			nouveau_maillon -> code = code;
+			nouveau_maillon -> suivant = NULL;
 
-		ptr_liste->nb_maillons++;
+			ptr_liste -> queue -> suivant = nouveau_maillon;
+			ptr_liste -> queue = nouveau_maillon;
 
-		return 1;
+			if(ptr_liste->nb_maillons == 0)
+			{
+				ptr_liste->tete = nouveau_maillon;
+			}
+
+			ptr_liste->nb_maillons++;
+
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 	else
 	{
@@ -94,19 +127,19 @@ int chercher_chaine_dans_liste(const t_liste_chainee * ptr_liste,
 							   unsigned int * ptr_code)
 {
 	int i;
-	const t_maillon * maillon_compare;
+	const t_maillon * ptr_parcourir_liste;
 
-	maillon_compare = ptr_liste->tete;
+	ptr_parcourir_liste = ptr_liste->tete;
 
 	for(i=0; taille_liste(ptr_liste); i++)
 	{
-		if(chaines_semblables(&(maillon_compare->chaine), ptr_chaine))
+		if(chaines_semblables(&(ptr_parcourir_liste->chaine), ptr_chaine))
 		{
-			*ptr_code = maillon_compare->code;
+			*ptr_code = ptr_parcourir_liste->code;
 			return 1;
 		}
 
-		maillon_compare = maillon_compare->suivant;
+		ptr_parcourir_liste = ptr_parcourir_liste->suivant;
 	}
 
 	return 0;
@@ -123,19 +156,19 @@ int chercher_code_dans_liste(const t_liste_chainee * ptr_liste,
 							 t_chaine * ptr_chaine)
 {
 	int i;
-	const t_maillon * maillon_compare;
+	const t_maillon * ptr_parcourir_liste;
 
-	maillon_compare = ptr_liste->tete;
+	ptr_parcourir_liste = ptr_liste->tete;
 
 	for(i=0; taille_liste(ptr_liste); i++)
 	{
-		if(maillon_compare->code == code)
+		if(ptr_parcourir_liste->code == code)
 		{
-			*ptr_chaine = maillon_compare->chaine;
+			*ptr_chaine = ptr_parcourir_liste->chaine;
 			return 1;
 		}
 
-		maillon_compare = maillon_compare->suivant;
+		ptr_parcourir_liste = ptr_parcourir_liste->suivant;
 	}
 
 	return 0;
@@ -150,12 +183,18 @@ void vider_liste(t_liste_chainee * ptr_liste)
 {
 	ptr_liste->nb_maillons = 0;
 
-	t_maillon * tmp;
+	t_maillon * ptr_maillon_a_detruire;
 
 	while(ptr_liste->tete != NULL)
 	{
-		tmp = ptr_liste -> tete;
-		free(ptr_liste -> tete);
-		ptr_liste->tete = tmp -> suivant;
+		//ptr_maillon_a_detruire = ptr_liste -> tete;
+		//free(ptr_liste -> tete);
+		//ptr_liste->tete = ptr_maillon_a_detruire -> suivant;
+
+		ptr_maillon_a_detruire = ptr_liste->tete;
+		ptr_liste->tete = ptr_maillon_a_detruire->suivant;
+		free(ptr_maillon_a_detruire);
 	}
+
+	ptr_liste->queue = NULL;
 }
