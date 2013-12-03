@@ -93,28 +93,9 @@ int chaines_semblables(const t_chaine * ptr_chaine1,
 	ECRIRE_CHAINE_FICHIER
 
 	Cette fonction ecrit la chaine pointee dans le fichier recu.
-
-	PARAMETRES :
-		- fichier_destination : Le fichier ou l'on souhaite ecrire la chaine
-								(FILE *). Ce fichier doit etre ouvert en
-								mode ecriture / binaire.
-		- ptr_chaine : L'adresse de la chaine a ecrire (const t_chaine *).
-
-	RETOUR : Aucun.
-
-	EXEMPLE D'APPEL :
-		t_chaine une_chaine;
-		FILE * fichier = fopen("test.txt", "wb");
-		if (fichier != NULL)
-		{
-			vider_chaine(&une_chaine);
-			ajouter_caractere(&une_chaine, 'A');
-			ecrire_chaine_fichier(fichier, &une_chaine);
-		}
-		fclose(fichier);
-
-	ATTENTION : La fonction suppose que le pointeur pointe vers une chaine
-			    initialisee a l'aide de la fonction vider_chaine.
 */
 void ecrire_chaine_fichier(FILE * fichier_destination,
-						   const t_chaine * ptr_chaine);
+						   const t_chaine * ptr_chaine)
+{
+	fwrite(ptr_chaine, sizeof(unsigned char), 1, fichier_destination);
+}

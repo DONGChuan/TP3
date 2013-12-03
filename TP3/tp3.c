@@ -17,6 +17,7 @@
 
 
 #include "dictionnaire.h"
+#include "chaine.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -297,12 +298,55 @@ int demarrer_traitement(const char * source, const char * destination,
 
 int effectuer_compression(FILE * fichier_source, FILE * fichier_destination)
 {
-	printf("Compression a venir...\n");
+	t_chaine une_chaine; 				
+	t_chaine chaine_temp;
+	unsigned char un_caractere;		
+	t_dictionnaire un_dictionnaire; 	
+	unsigned int un_code;		
 
-	/*
-		COMPLETER CETTE FONCTION.
-		AU BESOIN, ECRIVEZ DES SOUS-FONCTIONS.
-	*/
+	printf("Compression a venir...\n");		
+
+	initialiser_dictionnaire(&un_dictionnaire);
+	
+	for (un_caractere = 0 ; un_caractere < 255 ; ++un_caractere)
+	{
+		vider_chaine(&une_chaine);
+		ajouter_caractere(&une_chaine, un_caractere);
+		ajouter_une_chaine(&un_dictionnaire, &une_chaine);
+	}
+
+	vider_chaine(&une_chaine);
+	ajouter_caractere(&une_chaine, 255);
+	ajouter_une_chaine(&un_dictionnaire, &une_chaine);
+	
+	vider_chaine(&une_chaine);
+	vider_chaine(&chaine_temp);
+
+	while (fread(&un_caractere, sizeof(unsigned char), 1, fichier_source))
+	{
+		ajouter_caractere(&chaine_temp, un_caractere);
+		
+		if (code_de_la_chaine(&un_dictionnaire, &chaine_temp, &un_code))
+		{
+			ajouter_caractere(&une_chaine, un_caractere);
+		}
+		else
+		{
+			if (nb_chaines_dictionnaire(&un_dictionnaire) < pow(2.0,12.0))
+			{	
+				ajouter_une_chaine(&un_dictionnaire, &chaine_temp);
+			}
+			
+			code_de_la_chaine(&un_dictionnaire, &une_chaine, &un_code);
+			ecrire_code_chaine(fichier_destination, un_code, NB_BITS_PAR_CODE);
+			
+			vider_chaine(&chaine_temp);
+			vider_chaine(&une_chaine);
+			ajouter_caractere(&une_chaine, un_caractere);
+		}
+	} 
+	code_de_la_chaine(&un_dictionnaire, &une_chaine, &un_code);
+	ecrire_code_chaine(fichier_destination, un_code, NB_BITS_PAR_CODE);
 
 	return 1;
 }
@@ -366,6 +410,7 @@ int effectuer_decompression(FILE * fichier_source, FILE * fichier_destination)
 		écrire le code de chaîne dans le fichier destination
 	*/
 	
+
 	return 1;
 }
 

@@ -167,9 +167,9 @@ int chercher_code_dans_liste(const t_liste_chainee * ptr_liste,
 */
 void vider_liste(t_liste_chainee * ptr_liste)
 {
-	ptr_liste->nb_maillons = 0;
-
 	t_maillon * ptr_maillon_a_detruire;
+
+	ptr_liste->nb_maillons = 0;
 
 	while(ptr_liste->tete != NULL)
 	{

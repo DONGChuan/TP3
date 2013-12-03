@@ -74,16 +74,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="chaine.c" />
-    <ClCompile Include="dictionnaire.c" />
-    <ClCompile Include="liste.c" />
-    <ClCompile Include="test.c" />
-    <ClCompile Include="tp3.c" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="chaine.h" />
     <ClInclude Include="dictionnaire.h" />
     <ClInclude Include="liste.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="chaine.c" />
+    <ClCompile Include="dictionnaire.c" />
+    <ClCompile Include="liste.c" />
+    <ClCompile Include="tp3.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
